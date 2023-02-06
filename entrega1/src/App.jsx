@@ -1,17 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-// import './App.css'
+import { useState, useEffect } from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+
 import Navbar from './components/NavBar/Navbar'
-import ItemContainer from './components/paginas/ItemContainer'
+import { ItemListContainer } from './components/ItemListContainer/ItemListContainer'
+import ItemCount from './components/ItemCount/ItemCount'
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
+import ItemDetail from './components/ItemDetail/ItemDetail'
 
 function App() {
  
 
   return (
-    <>
+    <BrowserRouter>
    <Navbar/>
-   <ItemContainer saludo='greeting'/>
-   </>
+   <Routes>
+    <Route path='/' element= { <ItemListContainer  /> } />
+    <Route path='/categoria/:idCategoria' element= { <ItemListContainer /> } /> 
+
+    <Route path='/detalle/:idProducto' element= { <ItemDetailContainer /> } />
+
+    <Route path='*' element= { <Navigate to='/' /> } />
+   </Routes>
+    </BrowserRouter>
   )
 }
 
